@@ -12,8 +12,37 @@ class JokeVC: UIViewController {
 
 	@IBOutlet weak var headerLabel: UILabel!
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		subsribeNotifications()
+	}
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		
+		unsubsribeNotifications()
+	}
+	
+	func subsribeNotifications() {
+		NotificationCenter.default.addObserver(self, selector: #selector(displayJoke(notification:)),
+											   name: NSNotification.Name(rawValue: JokeGenerator.jokeReceivedNotification),
+											   object: nil)
+	}
+	
+	@objc func displayJoke(notification: Notification) {
+		headerLabel.text =  notification.userInfo?[JokeGenerator.kJokeText] as? String //Date().description
+	}
+	
+	func unsubsribeNotifications() {
+		NotificationCenter.default.removeObserver(self)
+	}
+	
 	@IBAction func showJoke() {
-		JokeGenerator.getRandomJoke()
+		JokeGenerator.getRandomJoke { (joke) in
+			self.headerLabel.text = joke
+		}
+		
 	}
 	
    
