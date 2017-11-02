@@ -19,6 +19,8 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		subsribeNotifications()
+		
 		if let label1 = view.viewWithTag(1) as? UILabel {
 			label1.text = "hello"
 		}
@@ -26,7 +28,25 @@ class ViewController: UIViewController {
 		label1?.text = "hello"
 
 	}
-
+	
+	func subsribeNotifications() {
+		NotificationCenter.default.addObserver(self, selector: #selector(displayJoke(notification:)),
+											   name: NSNotification.Name(rawValue: JokeGenerator.jokeReceivedNotification),
+											   object: nil)
+	}
+	
+	func unsubsribeNotifications() {
+		NotificationCenter.default.removeObserver(self)
+	}
+	
+	@objc func displayJoke(notification: Notification) {
+		imageBox.isHidden = true
+		view.backgroundColor = UIColor(red: CGFloat(arc4random_uniform(256))/255,
+									   green: CGFloat(arc4random_uniform(256))/255,
+									   blue: CGFloat(arc4random_uniform(256))/255,
+									   alpha: 1)
+	}
+	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //		view.endEditing(true)
 		
@@ -51,6 +71,8 @@ class ViewController: UIViewController {
 		
 	}
 	
+	
+	
 	@IBAction func downloadAndPresentImageFromButtonTile(_ sender: UIButton) {
 //		downloadImage(link: sender.currentTitle!)
 		imageBox.sd_setImage(with: URL.init(string: sender.currentTitle!)!, completed: nil)
@@ -73,6 +95,9 @@ class ViewController: UIViewController {
 //		print("ololo")
 //	}
 
+	deinit {
+		unsubsribeNotifications()
+	}
 
 }
 

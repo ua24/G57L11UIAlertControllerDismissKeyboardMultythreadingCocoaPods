@@ -65,16 +65,32 @@
 		4C020B301FA8E5CD0032B3E7 /* G57L11 */ = {
 			isa = PBXGroup;
 			children = (
-				4C020B311FA8E5CD0032B3E7 /* AppDelegate.swift */,
-				4C020B331FA8E5CE0032B3E7 /* ViewController.swift */,
 				4C020B351FA8E5CE0032B3E7 /* Main.storyboard */,
-				4C948F0B1FA90A0600E47ADB /* JokeGenerator.swift */,
-				4C948F0D1FA90BC700E47ADB /* JokeVC.swift */,
+				4CB26AA21FAB99AF00751244 /* Controller */,
+				4CB26AA31FAB99CB00751244 /* Model */,
+				4C020B311FA8E5CD0032B3E7 /* AppDelegate.swift */,
 				4C020B381FA8E5CE0032B3E7 /* Assets.xcassets */,
 				4C020B3A1FA8E5CE0032B3E7 /* LaunchScreen.storyboard */,
 				4C020B3D1FA8E5CE0032B3E7 /* Info.plist */,
 			);
 			path = G57L11;
+			sourceTree = "<group>";
+		};
+		4CB26AA21FAB99AF00751244 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C948F0D1FA90BC700E47ADB /* JokeVC.swift */,
+				4C020B331FA8E5CE0032B3E7 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4CB26AA31FAB99CB00751244 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C948F0B1FA90A0600E47ADB /* JokeGenerator.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8630B7D261B7C9F006E1D8B8 /* Frameworks */ = {

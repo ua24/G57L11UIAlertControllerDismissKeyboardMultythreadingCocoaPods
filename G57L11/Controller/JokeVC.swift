@@ -30,13 +30,15 @@ class JokeVC: UIViewController {
 											   object: nil)
 	}
 	
+	func unsubsribeNotifications() {
+		NotificationCenter.default.removeObserver(self)
+	}
+	
 	@objc func displayJoke(notification: Notification) {
 		headerLabel.text =  notification.userInfo?[JokeGenerator.kJokeText] as? String //Date().description
 	}
 	
-	func unsubsribeNotifications() {
-		NotificationCenter.default.removeObserver(self)
-	}
+	
 	
 	@IBAction func showJoke() {
 		JokeGenerator.getRandomJoke { (joke) in
